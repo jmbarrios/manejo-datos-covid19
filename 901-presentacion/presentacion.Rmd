@@ -1,0 +1,86 @@
+---
+title: "Manejo de datos sobre COVID-19"
+subtitle: "en R"
+author: "Juan M Barrios <j.m.barrios@gmail.com>"
+institute: "Ecoinformática @ CONABIO"
+date: "30/03/2020 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, metropolis-fonts, my-theme.css]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+# Acerca de mi
+
+- Soy un matemático que trabaja con biólogos, geografos y otras 
+  profesiones, desde la coordinación de Ecoinformática.
+- En mi área nos enfocamos en aplicación de técnicas de estadística,
+  aprendizaje de máquina e integencia artificial a temas de interés 
+  de conservación. 
+- No solo hacemos esto también apoyamos orientando a la institución en
+  las políticas de publicación y conservación de los datos que genera.
+
+---
+
+## De que NO es esta sesión
+
+- Está sesión **NO** se verá si las políticas del gobierno son adecuadas.
+- **NO** se verificará si los datos que se publican son verídicos.
+- **NO** se centrará en la modelación y en la justifiación de los métodos
+  estadísticos usados.
+  
+## De que SÍ es esta sesión
+
+- Veremos como descargar los datos y manejarlos en R.
+- Discutiremos algunos aspectos importantes para considerar de estos datos.
+- Hablaremos de que tipo de cosas podríamos obtener de los datos.
+- Haremos notar la importancia de los datos abiertos y también de porque es 
+  importante publicar estos datos en formatos procesables.
+  
+---
+
+# Un poco sobre nuestro amigo
+
+- La COVID-19 es una enfermedad respiratoria que es causada por el virus 
+  SARS-CoV-2. 
+- Los primeros indicios de la enfermedad se dieron en diciembre en la ciudad
+  de Wuhan, capital de Hubei.
+- En la primera quincena de enero se empiezan a dar casos de COVID-19 fuera
+  de China. 
+- México registra su primer caso un hombre de la CDMX que viajo a Italia el 
+  día 22 de febrero empieza con síntomas.
+  
+---
+
+# De donde obtendremos los datos
+
+Usaremos dos repositorios de los datos. 
+
+- **2019 Novel Coronavirus COVID-19 (2019-nCoV) Data Repository by Johns 
+  Hopkins CSSE**
+  https://github.com/CSSEGISandData/COVID-19
+
+- **COVID19_Mex por Katia Guzman**
+  https://github.com/guzmart/covid19_mex
+  
+Estos dos repositorios los usaremos ya que los datos ya están previamente 
+procesados para que sean fácilmente leibles de manera automática. 
+
+---
+
+# Algunos links interesantes
+
+- Una excelente página con muchos datos sobre el brote y algunas discusiones
+  interesantes sobre la interpretación de los mismos: 
+  https://ourworldindata.org/coronavirus 
+  
+  
+- Aquí se discute un poco sobre la importancia de los datos y su accesibilidad:
+  https://www.go-fair.org/fair-principles/
+
