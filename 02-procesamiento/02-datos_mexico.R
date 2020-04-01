@@ -71,3 +71,41 @@ origen <- data_mexico %>%
 ggplot(origen) +
   geom_bar(aes(x = procedencia)) +
   coord_flip()
+
+# Ver la evolución temporal de la procedencia de los casos
+origen <- data_mexico %>%
+  group_by(fecha_corte, procedencia) %>%
+  summarise(casos_nuevos_x_pais = n()) %>%
+  group_by(procedencia) %>%
+  mutate(acumulados_x_pais = cumsum(casos_nuevos_x_pais))
+
+ggplot(origen, aes(x = fecha_corte, 
+                   y = acumulados_x_pais, 
+                   colour = procedencia)) + 
+  geom_point() + 
+  geom_line() +
+  scale_color_brewer(palette ="Paired") +
+  theme_bw() 
+
+# Que pasa con este tweet
+# https://twitter.com/meithan42/status/1244462990251954179?s=20
+# Vamos a recrearla
+datos_raros <- data_mexico %>%
+  group_by(fecha_inicio) %>%
+  summarise(casos_x_inicio = n()) %>%
+  mutate(casos_acumulados = cumsum(casos_x_inicio))
+
+ggplot(datos_raros, aes(x = fecha_inicio, y = casos_acumulados)) +
+  geom_line() +
+  geom_point() +
+  theme_bw()
+
+# Wow, ¿qué paso aquí?
+data_confirmacion <- data_mexico %>%
+  mutate(lag = fecha_corte - fecha_inicio)
+
+ggplot(data_confirmacion) +
+  geom_bar(aes(x = lag))
+
+# Ejercicio: Puedes explicar con esta grafica porque se ve el efecto
+# de un crecimiento no muy "exponencial".
