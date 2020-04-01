@@ -91,3 +91,22 @@ datos_paises_top10 %>%
 # los 100 casos o hay paises que llegaron antes a este umbral pero ya no 
 # siguieron subiendo sus casos totales a la misma velocidad de los paises con
 # más casos.
+
+# Código para generar la gráfica de comparación refererida en el _tweet_
+# https://twitter.com/penileyramirez/status/1242461382068535297?s=20
+datos_comparacion <- datos_confirmados_grp %>% 
+  filter(`Country/Region` %in% 
+           c('Mexico', 'Spain', 'Italy')) %>%
+  filter(Conteos_por_pais >= 1) %>%
+  mutate(dias_desde_primer_caso = Fecha - min(Fecha))
+
+datos_comparacion %>% View()
+
+ggplot(datos_comparacion, aes(x = dias_desde_primer_caso,
+                              y = Conteos_por_pais,
+                              colour = `Country/Region`)) +
+  geom_line() +
+  geom_point() +
+  xlim(0, 28) +
+  ylim(0, 500) +
+  theme_bw()
